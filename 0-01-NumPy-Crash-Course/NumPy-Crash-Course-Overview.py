@@ -4,37 +4,29 @@
 import numpy as np
 
 my_list = [0,1,2,3,4]
-
 arr = np.array(my_list)
-
 print(arr)
 
 
 # arange integers, takes in start,stop, and step size
-
 a = np.arange(0,10)
 print(a)
-
 a= np.arange(0,10,2)
 print(a)
 
 # Create an array of zeros
-
 a = np.zeros((5,5))
 print(a)
 
 # Create an array of ones
-
 a = np.ones((2,4))
 print(a)
 
 # Create an array of random integers (uniform distribution between limits)
-
 a = np.random.randint(0,10)
 print(a)
 
 # Create 2d matrix of random ints
-
 a = np.random.randint(0,10,(3,3))
 print(a)
 
@@ -63,18 +55,13 @@ print(arr2)
 
 
 # Simple operations
-
 print(arr.max())
-
 print(arr.min())
-
 print(arr.mean())
 
 # Index location of min
 print(arr.argmin())
-
 print(arr.argmax())
-
 print(arr.reshape(2,5))
 
 ###########################
@@ -106,7 +93,6 @@ print(mat[row,:])
 # we'll see this idea used in pandas.
 
 print(mat > 50)
-
 
 print(mat[mat>50])
 
