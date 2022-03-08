@@ -7,14 +7,14 @@ import plotly.offline as pyo
 import plotly.graph_objs as go
 import pandas as pd
 
-df = pd.read_csv('../data/mpg.csv')
+df = pd.read_csv('../Data/mpg.csv')
 
 data = [go.Scatter(          # start with a normal scatter plot
     x=df['horsepower'],
     y=df['mpg'],
-    text=df['name'],
+    text=df['name'],    # text display when hovering over
     mode='markers',
-    marker=dict(size=1.5*df['cylinders']) # set the marker size
+    marker=dict(size=1.5*df['cylinders']) # set the marker size & multiply it for better dimension visuals
 )]
 
 layout = go.Layout(
