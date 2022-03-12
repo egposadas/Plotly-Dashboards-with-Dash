@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 app = dash.Dash()
 
 app.layout = html.Div([
-    dcc.Input(id='my-id', value='initial value', type='text'),
+    dcc.Input(id='my-id', value='Initial Text', type='text'),
     html.Div(id='my-div')
 ])
 

@@ -17,88 +17,85 @@ df = pd.read_csv(
     '8e0768211f6b747c0db42a9ce9a0937dafcbd8b2/'
     'indicators.csv')
 
-available_indicators = df['Indicator Name'].unique()
+indicators = df['Indicator Name'].unique()
 
 app.layout = html.Div([
     html.Div([
         html.Div([
-            dcc.Dropdown(
-                id='xaxis-column',
-                options=[{'label': i, 'value': i} for i in available_indicators],
+            dcc.Dropdown(id='xaxis-col',
+                options=[{'label':i, 'value':i} for i in indicators],
                 value='Fertility rate, total (births per woman)'
             ),
-            dcc.RadioItems(
-                id='xaxis-type',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
+            dcc.RadioItems(id='xaxis-type',
+                options=[{'label':i, 'value':i} for i in ['Linear', 'Log']],
                 value='Linear',
                 labelStyle={'display': 'inline-block'}
             )
-        ],
-        style={'width': '48%', 'display': 'inline-block'}),
-
+        ], style={'width': '48%', 'display': 'inline-block'}),
         html.Div([
-            dcc.Dropdown(
-                id='yaxis-column',
-                options=[{'label': i, 'value': i} for i in available_indicators],
+            dcc.Dropdown(id='yaxis-col',
+                options=[{'label':i, 'value':i} for i in indicators],
                 value='Life expectancy at birth, total (years)'
             ),
-            dcc.RadioItems(
-                id='yaxis-type',
-                options=[{'label': i, 'value': i} for i in ['Linear', 'Log']],
+            dcc.RadioItems(id='yaxis-type',
+                options=[{'label':i, 'value':i} for i in ['Linear', 'Log']],
                 value='Linear',
                 labelStyle={'display': 'inline-block'}
             )
-        ],style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
+        ], style={'width': '48%', 'float': 'right', 'display': 'inline-block'})
     ]),
 
-    dcc.Graph(id='indicator-graphic'),
+    dcc.Graph(id='indicator_grf'),
 
-    dcc.Slider(
-        id='year--slider',
+    dcc.Slider(id='year_slider',
         min=df['Year'].min(),
         max=df['Year'].max(),
         value=df['Year'].max(),
         step=None,
         marks={str(year): str(year) for year in df['Year'].unique()}
     )
+    
 ], style={'padding':10})
 
+
 @app.callback(
-    Output('indicator-graphic', 'figure'),
-    [Input('xaxis-column', 'value'),
-     Input('yaxis-column', 'value'),
-     Input('xaxis-type', 'value'),
-     Input('yaxis-type', 'value'),
-     Input('year--slider', 'value')])
-def update_graph(xaxis_column_name, yaxis_column_name,
-                 xaxis_type, yaxis_type,
-                 year_value):
-    dff = df[df['Year'] == year_value]
+    Output('indicator_grf', 'figure'), 
+    [   Input('xaxis-col', 'value'),
+        Input('yaxis-col', 'value'),
+        Input('xaxis-type', 'value'),
+        Input('yaxis-type', 'value'),
+        Input('year_slider', 'value')
+    ]
+)
+def update_grf(xaxis_col, yaxis_col, xaxis_type, yaxis_type, year):
+    dfy = df[df['Year']==year]
     return {
         'data': [go.Scatter(
-            x=dff[dff['Indicator Name'] == xaxis_column_name]['Value'],
-            y=dff[dff['Indicator Name'] == yaxis_column_name]['Value'],
-            text=dff[dff['Indicator Name'] == yaxis_column_name]['Country Name'],
+            x=dfy[dfy['Indicator Name']==xaxis_col]['Value'],
+            y=dfy[dfy['Indicator Name']==yaxis_col]['Value'],
+            text=dfy[dfy['Indicator Name']==yaxis_col]['Country Name'],
             mode='markers',
             marker={
                 'size': 15,
-                'opacity': 0.5,
+                'opacity':0.5,
                 'line': {'width': 0.5, 'color': 'white'}
             }
-        )],
+        )], 
+
         'layout': go.Layout(
             xaxis={
-                'title': xaxis_column_name,
+                'title': xaxis_col,
                 'type': 'linear' if xaxis_type == 'Linear' else 'log'
             },
             yaxis={
-                'title': yaxis_column_name,
+                'title': yaxis_col,
                 'type': 'linear' if yaxis_type == 'Linear' else 'log'
             },
-            margin={'l': 40, 'b': 40, 't': 10, 'r': 0},
-            hovermode='closest'
+            hovermode='closest'  
         )
+        
     }
+
 
 if __name__ == '__main__':
     app.run_server()

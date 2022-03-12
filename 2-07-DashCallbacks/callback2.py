@@ -18,13 +18,18 @@ for year in df['year'].unique():
 
 app.layout = html.Div([
     dcc.Graph(id='graph'),
-    dcc.Dropdown(id='year-picker',options=year_options,value=df['year'].min())
+    dcc.Dropdown(id='year-picker',options=year_options,value=df['year'].max())
 ])
-
-@app.callback(Output('graph', 'figure'),
-              [Input('year-picker', 'value')])
+"""
+I want to connect the input form the dropdwn manu
+I want to connectth e output the the Grap=graph
+"""
+@app.callback(Output(component_id='graph', component_property='figure'),
+              [Input(component_id='year-picker', component_property='value')])
 def update_figure(selected_year):
+    # Data only for selected year
     filtered_df = df[df['year'] == selected_year]
+
     traces = []
     for continent_name in filtered_df['continent'].unique():
         df_by_continent = filtered_df[filtered_df['continent'] == continent_name]
