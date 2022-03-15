@@ -39,11 +39,11 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )], style={'width':'30%', 'float':'left'}),
+    )], style={'width':'50%', 'float':'left'}),
 
     html.Div([
-    html.Img(id='hover-image', src='children', height=300)
-    ], style={'paddingTop':35})
+        html.Img(id='hover-image', src='children', height=300)
+    ], style={'paddingTop':30})
 ])
 
 @app.callback(

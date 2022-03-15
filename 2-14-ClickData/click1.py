@@ -39,7 +39,7 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )], style={'width':'30%', 'float':'left'}),
+    )], style={'width':'50%', 'float':'left'}),
 
     html.Div([
     html.Img(id='click-image', src='children', height=300)
@@ -48,7 +48,7 @@ app.layout = html.Div([
 
 @app.callback(
     Output('click-image', 'src'),
-    [Input('wheels-plot', 'clickData')])
+    [Input('wheels-plot', 'clickData')]) # here is the change to clickdata
 def callback_image(clickData):
     wheel=clickData['points'][0]['y']
     color=clickData['points'][0]['x']

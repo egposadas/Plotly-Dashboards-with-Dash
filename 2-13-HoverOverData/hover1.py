@@ -29,7 +29,7 @@ app.layout = html.Div([
                         'size': 12,
                         'color': 'rgb(51,204,153)',
                         'line': {'width': 2}
-                        }
+                    }
                 )
             ],
             'layout': go.Layout(
@@ -39,10 +39,10 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )], style={'width':'30%', 'float':'left'}),
+    )], style={'width':'50%', 'float':'left'}),
 
     html.Div([
-    html.Pre(id='hover-data', style={'paddingTop':35})
+        html.Pre(id='hover-data', style={'paddingTop':35})
     ], style={'width':'30%'})
 ])
 
@@ -50,7 +50,7 @@ app.layout = html.Div([
     Output('hover-data', 'children'),
     [Input('wheels-plot', 'hoverData')])
 def callback_image(hoverData):
-    return json.dumps(hoverData, indent=2)
+    return json.dumps(hoverData, indent=4)
 
 if __name__ == '__main__':
     app.run_server()
