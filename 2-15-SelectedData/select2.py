@@ -14,10 +14,10 @@ import pandas as pd
 app = dash.Dash()
 
 # create x and y arrays
-np.random.seed(10)          # for reproducible results
-x1 = np.linspace(0.1,5,50)  # left half
-x2 = np.linspace(5.1,10,50) # right half
-y = np.random.randint(0,50,50) # 50 random points
+np.random.seed(10)              # for reproducible results
+x1 = np.linspace(0.1,5,50)      # left half
+x2 = np.linspace(5.1,10,50)     # right half
+y = np.random.randint(0,50,50)  # 50 random points
 
 # create three "half DataFrames"
 df1 = pd.DataFrame({'x': x1, 'y': y})
@@ -44,7 +44,7 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )], style={'width':'30%', 'display':'inline-block'}),
+    )], style={'width':'50%', 'display':'inline-block'}),
 
     html.Div([
     html.H1(id='density', style={'paddingTop':25})

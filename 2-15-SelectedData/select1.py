@@ -39,7 +39,7 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )], style={'width':'30%', 'display':'inline-block'}),
+    )], style={'width':'50%', 'display':'inline-block'}),
 
     html.Div([
     html.Pre(id='selection', style={'paddingTop':25})
@@ -48,7 +48,7 @@ app.layout = html.Div([
 
 @app.callback(
     Output('selection', 'children'),
-    [Input('wheels-plot', 'selectedData')])
+    [Input('wheels-plot', 'selectedData')])     # selectedData connect to the property id of slectedData
 def callback_image(selectedData):
     return json.dumps(selectedData, indent=2)
 
