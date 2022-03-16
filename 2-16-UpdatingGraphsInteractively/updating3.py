@@ -85,6 +85,7 @@ def callback_graph(hoverData):
     Output('mpg_stats', 'children'),
     [Input('mpg_scatter', 'hoverData')])
 def callback_stats(hoverData):
+    print(hoverData)
     v_index = hoverData['points'][0]['pointIndex']
     stats = """
         {} cylinders

@@ -13,19 +13,18 @@ app = dash.Dash()
 
 df = pd.read_csv('../data/mpg.csv')
 # Add a random "jitter" to model_year to spread out the plot
-df['year'] = random.randint(-4,5,len(df))*0.10 + df['model_year']
+df['year'] = df['model_year'] + random.randint(-4,5,len(df))*0.10
 
 app.layout = html.Div([
-    dcc.Graph(
-        id='mpg_scatter',
+    dcc.Graph(id='mgp_scatter',
         figure={
             'data': [go.Scatter(
-                x = df['year']+1900,  # our "jittered" data
-                y = df['mpg'],
-                text = df['name'],
-                hoverinfo = 'text',
-                mode = 'markers'
-            )],
+                    x = df['year']+1900,
+                    y = df['mpg'],
+                    text = df['name'],
+                    hoverinfo = 'text',
+                    mode = 'markers'
+                )],
             'layout': go.Layout(
                 title = 'mpg.csv dataset',
                 xaxis = {'title': 'model year'},
@@ -33,8 +32,9 @@ app.layout = html.Div([
                 hovermode='closest'
             )
         }
-    )
+    )    
 ])
+
 
 if __name__ == '__main__':
     app.run_server()
