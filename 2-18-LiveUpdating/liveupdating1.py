@@ -4,7 +4,9 @@
 # **This version only loads the site. No callbacks.**
 ######
 import dash
+import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Input, Output
 import requests
 
 url = "https://data-live.flightradar24.com/zones/fcgi/feed.js?faa=1&mlat=1&flarm=1&adsb=1&gnd=1&air=1&vehicles=1&estimated=1&stats=1"
@@ -18,11 +20,11 @@ app = dash.Dash()
 
 app.layout = html.Div([
     html.Div([
-        html.Iframe(src = 'https://www.flightradar24.com', height = 500, width = 1200)
+        html.Iframe(src = 'https://www.flightradar24.com')
     ]),
 
     html.Div([
-    html.Pre('Active flights worldwide: {}'.format(counter))
+        html.Pre('Active flights worldwide: {}'.format(counter))
     ])
 ])
 

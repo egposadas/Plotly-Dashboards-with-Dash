@@ -50,10 +50,10 @@ def update_layout(n):
               [Input('interval-component', 'n_intervals')])
 def update_graph(n):
     fig = go.Figure(
-        data = [go.Scatter(
-        x = list(range(len(counter_list))),
-        y = counter_list,
-        mode='lines+markers'
+            data = [go.Scatter(
+            x = list(range(len(counter_list))),
+            y = counter_list,
+            mode='lines+markers'
         )])
     return fig
 

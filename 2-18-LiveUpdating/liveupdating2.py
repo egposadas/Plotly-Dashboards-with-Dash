@@ -13,7 +13,7 @@ app = dash.Dash()
 
 app.layout = html.Div([
     html.Div([
-        html.Iframe(src = 'https://www.flightradar24.com', height = 500, width = 1200)
+        html.Iframe(src = 'https://www.flightradar24.com', height = 500, width = 500)
     ]),
 
     html.Div([
